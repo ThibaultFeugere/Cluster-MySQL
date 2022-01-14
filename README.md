@@ -357,13 +357,16 @@ Node 3: Index usage is 0%(21 8K pages of total 16416)
 ## Questions :
 
 Quel impact aura la perte du management node ? 
+  Il n'y aura plus de bascule vers un deuxième node lorsqu'un node sera perdu.
 
 Est-ce que le management node à un rôle critique dans le fonctionnement de mon cluster ? Quelle solution de secours peut-on imaginer ? 
+  Oui, le management node est l'élément principal dans le fonctionnement du cluster. En solution de secours, on peut imaginer la mise en place d'un double cluster.
 
 Quel est l'impact de la perte de mon DataNode1 ?
+  Le DataNode2 va reprendre la gestion des données.
 
 Quel est l'impact de la perte de mon SQL node 2 ?
-
+  Le SQL node 1 n'aura plus de backup en cas de perte.
 
 
 | Evenement | Evenement attendu | Evenement obtenu |
