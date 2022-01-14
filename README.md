@@ -341,7 +341,7 @@ id=5    @10.0.0.13  (mysql-5.6.28 ndb-7.4.10)
 
 On veut désormais savoir si, lorsque l'on crée une table `sql_cluster` sur un node, on puisse voir la voir sur le node2.
 
-(insérer image : createion-table-node1-visible-sur-node2)
+![](images/createion-table-node1-visible-sur-node2.png)
 
 Sur le Node Management on peut voir les stats de mémoires.
 
