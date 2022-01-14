@@ -357,19 +357,28 @@ Node 3: Index usage is 0%(21 8K pages of total 16416)
 ## Questions :
 
 Quel impact aura la perte du management node ? 
-  Il n'y aura plus de bascule vers un deuxième node lorsqu'un node sera perdu.
+
+Il n'y aura plus de bascule vers un deuxième node lorsqu'un node sera perdu. Il y aura une désynchronisation.
 
 Est-ce que le management node à un rôle critique dans le fonctionnement de mon cluster ? Quelle solution de secours peut-on imaginer ? 
-  Oui, le management node est l'élément principal dans le fonctionnement du cluster. En solution de secours, on peut imaginer la mise en place d'un double cluster.
+
+Oui, le management node est l'élément principal dans le fonctionnement du cluster. En solution de secours, on peut imaginer la mise en place d'un double management node. Autrement dit, augmenter la redondance.
 
 Quel est l'impact de la perte de mon DataNode1 ?
-  Le DataNode2 va reprendre la gestion des données.
+
+Le data_node2 va prendre le relai. 
 
 Quel est l'impact de la perte de mon SQL node 2 ?
-  Le SQL node 1 n'aura plus de backup en cas de perte.
+
+Le SQL node 1 n'aura plus de backup en cas de perte du data_node1.
 
 
 | Evenement | Evenement attendu | Evenement obtenu |
 | --------- | ----------------- | ---------------- |
-|           |                   |                  |
-|           |                   |                  |
+|    Perte du Data Node1       |          Prise en charge par le Data Node2         | Le Data Node2 prend le relai.                 |
+|      Perte de tout le cluster     | Service defectueux et inaccessible                  |      Plus aucun service n'est accessible            |
+| Perte du SQL Node 1 | Prise en charge par SQL Node 2 | SQL Node2 fonctionne toujours |
+| Perte du SQL Node 2 | Prise en charge par SQL Node 1 | SQL Node1 fonctionne toujours |
+| Perte du management node | Impossible d'ajouter de nouveaux noeuds | Service défectueux |
+| Perte du management node | Désynchronisation | Pas de synchronisation |
+
